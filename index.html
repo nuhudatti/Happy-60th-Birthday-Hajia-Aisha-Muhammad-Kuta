@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Happy 60th Birthday — Hajia Aisha Muhammad Kuta • Mother of Wisdom • Matriarch of Legacy • Heart of the Ndatti Dynasty">
+    <title>Happy 60th Birthday | Hajia Aisha Muhammad Kuta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ========== CINEMATIC INTRO ========== -->
+    <section id="intro" class="intro active">
+        <div class="intro-stars" id="introStars"></div>
+        <div class="intro-content">
+            <p class="intro-line intro-line-1">Every great life writes its story in the stars.</p>
+            <p class="intro-line intro-line-2">Today we celebrate a woman whose love shaped our world.</p>
+            <h1 class="intro-title">Happy 60th Birthday Mum</h1>
+            <p class="intro-name">Hajia Aisha Muhammad Kuta</p>
+            <p class="intro-tagline">Mother of Wisdom • Matriarch of Legacy • Heart of the Ndatti Dynasty</p>
+            <div class="intro-confetti" id="introConfetti"></div>
+            <button type="button" class="intro-btn" id="enterUniverseBtn" aria-label="Enter Her Universe">
+                <span>Enter Her Universe</span>
+                <i class="fas fa-star"></i>
+            </button>
+        </div>
+        <div class="intro-audio-toggle" id="audioToggle" aria-label="Toggle music">
+            <i class="fas fa-volume-mute" id="audioIcon"></i>
+        </div>
+    </section>
+
+    <!-- ========== MAIN EXPERIENCE (hidden until intro done) ========== -->
+    <main id="mainExperience" class="main-experience">
+        <!-- Galaxy / Universe -->
+        <section id="galaxySection" class="galaxy-section">
+            <canvas id="galaxyCanvas"></canvas>
+            <div class="galaxy-overlay">
+                <h2 class="galaxy-title">Her Universe</h2>
+                <p class="galaxy-subtitle">Tap a star to discover a moment of her life</p>
+                <div class="stars-container" id="starsContainer"></div>
+            </div>
+        </section>
+
+        <!-- Memory modal (glassmorphism card when star is clicked) -->
+        <div id="memoryModal" class="memory-modal" aria-hidden="true">
+            <div class="memory-modal-backdrop" id="memoryBackdrop"></div>
+            <div class="memory-card">
+                <button type="button" class="memory-close" id="memoryClose" aria-label="Close"><i class="fas fa-times"></i></button>
+                <div class="memory-photo" id="memoryPhoto"></div>
+                <h3 class="memory-title" id="memoryTitle"></h3>
+                <p class="memory-text" id="memoryText"></p>
+                <div class="memory-hearts" id="memoryHearts"></div>
+            </div>
+        </div>
+
+        <!-- Thank You Lanterns -->
+        <section id="lanternSection" class="lantern-section">
+            <h2 class="section-heading">Thank You, Mum</h2>
+            <p class="section-sub">Messages that rise like lanterns</p>
+            <div class="lanterns-wrap" id="lanternsWrap"></div>
+        </section>
+
+        <!-- Life Timeline -->
+        <section id="timelineSection" class="timeline-section">
+            <h2 class="section-heading">60 Years of Grace</h2>
+            <p class="section-sub">A life that built a legacy</p>
+            <div class="timeline-track" id="timelineTrack">
+                <div class="timeline-item" data-year="1965">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-card"><strong>1965</strong> — Born</div>
+                </div>
+                <div class="timeline-item" data-year="1980">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-card"><strong>Dreams</strong> — A daughter who came first in class and character</div>
+                </div>
+                <div class="timeline-item" data-year="1990">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-card"><strong>Family</strong> — Heart of the home at No.10 Gaskiya Road, Tudun-Wada, Zaria</div>
+                </div>
+                <div class="timeline-item" data-year="2000">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-card"><strong>Motherhood</strong> — Nurturing a nation through the values she passed on</div>
+                </div>
+                <div class="timeline-item" data-year="2025">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-card"><strong>60 Years</strong> — Matriarch of the Ndatti Dynasty • 37-member legacy since 1961</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Voice message (optional – user can add their own audio) -->
+        <section id="voiceSection" class="voice-section">
+            <h2 class="section-heading">A Message From Your Son</h2>
+            <button type="button" class="voice-btn" id="voiceBtn" aria-label="Play voice message">
+                <i class="fas fa-play-circle"></i>
+                <span>Listen to a message from my heart</span>
+            </button>
+            <audio id="voiceAudio" preload="metadata">
+                <!-- Add your audio: <source src="assets/voice-message.mp3" type="audio/mpeg"> -->
+            </audio>
+        </section>
+
+        <!-- Crown moment -->
+        <section id="crownSection" class="crown-section">
+            <div class="crown-bg"></div>
+            <div class="crown-content">
+                <div class="crown-icon" id="crownIcon"><i class="fas fa-crown"></i></div>
+                <p class="crown-line crown-line-1">To the Queen of Our Family</p>
+                <p class="crown-line crown-line-2">Your love built our world.</p>
+                <p class="crown-line crown-line-3">Happy 60th Birthday, Mum.</p>
+            </div>
+            <canvas id="fireworksCanvas"></canvas>
+        </section>
+
+        <!-- Final message -->
+        <section id="finalSection" class="final-section">
+            <button type="button" class="final-reveal-btn" id="finalRevealBtn">A Message From My Heart</button>
+            <div class="final-message" id="finalMessage" aria-hidden="true">
+                <p>Mum, you are not just our mother — you are the soul of our home, the soft voice behind strong children, and the calm centre in every storm. Your hands, worn but warm, have held generations. Today we celebrate 60 years of your grace, sacrifice, and love. Thank you for every prayer, every meal, and every act of devotion. We love you forever.</p>
+                <p class="final-sign">— With love, your children and the Ndatti Dynasty</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
