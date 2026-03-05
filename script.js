@@ -47,7 +47,7 @@
             id: 'children',
             title: 'Her Children',
             icon: 'fa-users',
-            text: 'Salamatu (Momi), Eng. Mustapha (Abba), Bilkisu, Halima (Umaima), Mohammed (Sarkin Gida), Haj. Maryam, Amina, Rukayya (Baby), Nuhu (Naji), Halliru (Hadir). She was the soft voice behind strong children, the calm centre in every storm.',
+            text: 'Salamatu (Momi), Eng. Mustapha (Baba), Bilkisu, Halima (Umaima), Mohammed (Sarkin Gida), Haj. Maryam, Amina, Rukayya (Baby), Nuhu (Naji), Halliru (Hadir). She was the soft voice behind strong children, the calm centre in every storm.',
             photo: ''
         },
         {
@@ -91,7 +91,20 @@
         }
 
         const enterBtn = document.getElementById('enterUniverseBtn');
+        const introAudio = document.getElementById('introAudio');
+
         enterBtn.addEventListener('click', () => {
+            if (introAudio) {
+                introAudio.pause();
+                introAudio.currentTime = 0;
+            }
+            const audioToggle = document.getElementById('audioToggle');
+            const audioIcon = document.getElementById('audioIcon');
+            if (audioToggle) audioToggle.classList.remove('playing');
+            if (audioIcon) {
+                audioIcon.classList.remove('fa-volume-up');
+                audioIcon.classList.add('fa-volume-mute');
+            }
             document.getElementById('intro').classList.add('hidden');
             document.getElementById('mainExperience').classList.add('visible');
             setTimeout(() => {
@@ -108,24 +121,26 @@
 
         const audioToggle = document.getElementById('audioToggle');
         const audioIcon = document.getElementById('audioIcon');
-        const audioEl = document.createElement('audio');
-        audioEl.loop = true;
-        audioEl.volume = 0.4;
-        // Add your music file to assets/music.mp3 and it will play when the user clicks the speaker icon
-        const musicSrc = 'assets/music.mp3';
-        const musicSource = document.createElement('source');
-        musicSource.src = musicSrc;
-        musicSource.type = 'audio/mpeg';
-        audioEl.appendChild(musicSource);
-        audioToggle.addEventListener('click', () => {
-            if (audioEl.paused) {
-                audioEl.play().catch(() => {});
-                audioToggle.classList.add('playing');
-            } else {
-                audioEl.pause();
-                audioToggle.classList.remove('playing');
+        if (introAudio) {
+            introAudio.volume = 0.5;
+            introAudio.loop = true;
+            if (audioToggle) {
+                audioToggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (introAudio.paused) {
+                        introAudio.play().then(function () {
+                            audioToggle.classList.add('playing');
+                            if (audioIcon) { audioIcon.classList.remove('fa-volume-mute'); audioIcon.classList.add('fa-volume-up'); }
+                        }).catch(function () {});
+                    } else {
+                        introAudio.pause();
+                        introAudio.currentTime = 0;
+                        audioToggle.classList.remove('playing');
+                        if (audioIcon) { audioIcon.classList.remove('fa-volume-up'); audioIcon.classList.add('fa-volume-mute'); }
+                    }
+                });
             }
-        });
+        }
     }
 
     function initConfetti() {
@@ -290,18 +305,46 @@
     }
 
     function initVoice() {
+        const mainEl = document.getElementById('mainExperience');
         const btn = document.getElementById('voiceBtn');
         const audio = document.getElementById('voiceAudio');
-        if (!btn || !audio) return;
-        btn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play().then(() => btn.classList.add('playing')).catch(() => {});
-            } else {
-                audio.pause();
-                btn.classList.remove('playing');
+        if (!audio) return;
+
+        function playVoiceMessage() {
+            var introAudio = document.getElementById('introAudio');
+            if (introAudio) {
+                introAudio.pause();
+                introAudio.currentTime = 0;
             }
+            audio.currentTime = 0;
+            audio.play().then(function () {
+                if (btn) btn.classList.add('playing');
+            }).catch(function () {
+                if (btn) btn.classList.add('playing');
+            });
+        }
+
+        if (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                playVoiceMessage();
+            });
+        }
+
+        if (mainEl) {
+            mainEl.addEventListener('click', function (e) {
+                if (btn && audio && btn.contains(e.target)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    playVoiceMessage();
+                }
+            });
+        }
+
+        audio.addEventListener('ended', function () {
+            if (btn) btn.classList.remove('playing');
         });
-        audio.addEventListener('ended', () => btn.classList.remove('playing'));
     }
 
     function initCrown() {

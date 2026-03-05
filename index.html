@@ -17,7 +17,7 @@
         <div class="intro-stars" id="introStars"></div>
         <div class="intro-content">
             <p class="intro-line intro-line-1">Every great life writes its story in the stars.</p>
-            <p class="intro-line intro-line-2">Today we celebrate a woman whose love shaped our world.</p>
+            <p class="intro-line intro-line-2">Today we celebrate a mother whose love shaped our world.</p>
             <h1 class="intro-title">Happy 60th Birthday Mum</h1>
             <p class="intro-name">Hajia Aisha Muhammad Kuta</p>
             <p class="intro-tagline">Mother of Wisdom • Matriarch of Legacy • Heart of the Ndatti Dynasty</p>
@@ -27,9 +27,12 @@
                 <i class="fas fa-star"></i>
             </button>
         </div>
-        <div class="intro-audio-toggle" id="audioToggle" aria-label="Toggle music">
+        <div class="intro-audio-toggle" id="audioToggle" aria-label="Toggle intro audio">
             <i class="fas fa-volume-mute" id="audioIcon"></i>
         </div>
+        <audio id="introAudio" loop preload="auto" aria-hidden="true">
+            <source src="assets/intro-audio.mp3" type="audio/mpeg">
+        </audio>
     </section>
 
     <!-- ========== MAIN EXPERIENCE (hidden until intro done) ========== -->
@@ -91,16 +94,27 @@
             </div>
         </section>
 
-        <!-- Voice message (optional – user can add their own audio) -->
+        <!-- Voice message: plays from assets/voice-message.mp3 and stays playing -->
         <section id="voiceSection" class="voice-section">
             <h2 class="section-heading">A Message From Your Son</h2>
             <button type="button" class="voice-btn" id="voiceBtn" aria-label="Play voice message">
                 <i class="fas fa-play-circle"></i>
                 <span>Listen to a message from my heart</span>
             </button>
-            <audio id="voiceAudio" preload="metadata">
-                <!-- Add your audio: <source src="assets/voice-message.mp3" type="audio/mpeg"> -->
-            </audio>
+            <audio id="voiceAudio" preload="auto" src="assets/voice-message.mp3" type="audio/mpeg"></audio>
+        </section>
+
+        <!-- Video: Me and Her Smiling -->
+        <section id="videoSection" class="video-section">
+            <h2 class="section-heading">Us</h2>
+            <p class="section-sub">Me and you, Mum — forever in this moment</p>
+            <div class="video-wrap">
+                <video id="ourVideo" class="our-video" controls playsinline preload="metadata" poster="assets/our-video.jpeg">
+                    <source src="assets/our-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <!-- <p class="video-caption"></p> -->
+            </div>
         </section>
 
         <!-- Crown moment -->

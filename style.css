@@ -200,6 +200,7 @@ body {
     width: 100%;
     height: 100%;
     display: block;
+    pointer-events: none;
 }
 .galaxy-overlay {
     position: relative;
@@ -474,10 +475,13 @@ body {
 .timeline-card strong { color: var(--gold); }
 
 /* Voice section */
+/* Voice section — ensure button is on top and clickable */
 .voice-section {
     padding: clamp(4rem, 10vw, 6rem) 1rem;
     background: linear-gradient(180deg, var(--space) 0%, var(--space-light) 100%);
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
 .voice-section .section-heading {
     font-family: var(--font-display);
@@ -488,6 +492,7 @@ body {
 .voice-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     padding: 1rem 1.75rem;
     font-family: var(--font-body);
@@ -497,15 +502,69 @@ body {
     border: 1px solid var(--glass-border);
     border-radius: 999px;
     cursor: pointer;
+    pointer-events: auto;
     transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    min-height: 52px;
+    position: relative;
+    z-index: 5;
 }
 .voice-btn:hover {
     background: rgba(212, 175, 55, 0.15);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
-.voice-btn i { font-size: 1.5rem; }
+.voice-btn:active {
+    transform: translateY(0);
+}
+.voice-btn i { font-size: 1.5rem; pointer-events: none; }
+.voice-btn span { pointer-events: none; }
 .voice-btn.playing i::before { content: "\f028"; }
+
+/* Video section — Me and Her Smiling */
+.video-section {
+    padding: clamp(4rem, 10vw, 6rem) 1rem;
+    background: linear-gradient(180deg, var(--space-light) 0%, var(--space) 100%);
+    text-align: center;
+}
+.video-section .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+}
+.video-section .section-sub {
+    font-size: 1rem;
+    color: var(--gold-light);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+.video-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    background: var(--space-mid);
+}
+.our-video {
+    width: 100%;
+    display: block;
+    vertical-align: middle;
+}
+.video-caption {
+    font-size: 0.8rem;
+    color: var(--gold-light);
+    opacity: 0.7;
+    margin-top: 0.75rem;
+    padding: 0 1rem;
+}
+.video-caption code {
+    background: rgba(212, 175, 55, 0.15);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
 
 /* Crown section */
 .crown-section {
